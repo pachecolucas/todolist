@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lista só com HTML, CSS e JS</title>
+    </head>
+    <body>
+        <h1>Lista de Tarefas</h1>
+        <ul id="lista">
+        </ul>
+        <input id="nova-tarefa" type="text">
+        <button onclick="add()">adicionar</button>
+        <script>
+            const tarefas = ["Coisa a fazer", "outra coisa a fazer"]
+            
+            function add() {
+                const input = document.getElementById("nova-tarefa")
+                const novaTarefa = input.value
+                tarefas.push(novaTarefa)
+                input.value = ""
+                render()
+            }
+
+            function render() {
+                const ul = document.getElementById('lista')
+                ul.innerText = null
+
+                var index = 0
+                while (index < tarefas.length) {
+                    
+                    const li = document.createElement("li")
+                    li.innerText = tarefas[index]
+                    ul.appendChild(li)
+
+                    index++
+                }
+            }
+
+            render()
+        </script>
+    </body>
+</html>

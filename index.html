@@ -7,15 +7,18 @@
         <h1>Lista de Tarefas</h1>
         <ul id="lista">
         </ul>
-        <input id="nova-tarefa" type="text">
-        <button onclick="add()">adicionar</button>
+        <form onsubmit="add(); return false" action="">
+            <input id="nova-tarefa" type="text">
+            <button type="submit">adicionar</button>
+        </form>
         <script>
             const tarefas = ["Coisa a fazer", "outra coisa a fazer"]
             
             function add() {
                 const input = document.getElementById("nova-tarefa")
-                const novaTarefa = input.value
-                tarefas.push(novaTarefa)
+                if (input.value == "") return
+
+                tarefas.push(input.value)
                 input.value = ""
                 render()
             }
@@ -24,15 +27,29 @@
                 const ul = document.getElementById('lista')
                 ul.innerText = null
 
-                var index = 0
-                while (index < tarefas.length) {
-                    
-                    const li = document.createElement("li")
-                    li.innerText = tarefas[index]
-                    ul.appendChild(li)
+                // // WHILE
+                // var i = 0
+                // while (i < tarefas.length) {
+                //     const li = document.createElement("li")
+                //     li.innerText = tarefas[i]
+                //     ul.appendChild(li)
 
-                    index++
-                }
+                //     i++
+                // }
+
+                // // FOR
+                // for (var i = 0; i < tarefas.length; i++) {
+                //     const li = document.createElement("li")
+                //     li.innerText = tarefas[i]
+                //     ul.appendChild(li)
+                // }
+
+                // FOREACH
+                tarefas.forEach(function (t) {
+                    const li = document.createElement("li")
+                    li.innerText = t
+                    ul.appendChild(li)
+                })
             }
 
             render()
